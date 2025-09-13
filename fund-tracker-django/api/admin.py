@@ -1,6 +1,7 @@
 from django.contrib import admin
+from .models import Feedback
 
-# Register your models here.
+# Register the models here.
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import User, FundSource, Allocation, Proof
@@ -15,7 +16,9 @@ class CustomUserAdmin(UserAdmin):
         ('Custom Fields', {'fields': ('role',)}),
     )
 
-# Register all of your models here to make them visible
+admin.site.register(Feedback)
+
+# Register all of the models here to make them visible
 admin.site.register(User, CustomUserAdmin)
 admin.site.register(FundSource)
 admin.site.register(Allocation)
