@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart City Projects</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+
+    header {
+      background: #0077b6;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 24px;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #0077b6;
+    }
+
+    /* Project cards */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      color: #023e8a;
+    }
+
+    .status {
+      font-size: 14px;
+      margin-top: 8px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      display: inline-block;
+    }
+
+    .completed { background: #d4edda; color: #155724; }
+    .ongoing { background: #fff3cd; color: #856404; }
+    .future { background: #d1ecf1; color: #0c5460; }
+
+    /* Flowchart */
+    .flowchart {
+      margin-top: 50px;
+      text-align: center;
+    }
+
+    .flowchart h2 {
+      margin-bottom: 30px;
+    }
+
+    .flow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .node {
+      background: #0077b6;
+      color: white;
+      padding: 15px 25px;
+      border-radius: 25px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      font-weight: bold;
+      position: relative;
+    }
+
+    .arrow {
+      width: 2px;
+      height: 40px;
+      background: #0077b6;
+    }
+  </style>
+</head>
+<body>
+  <header>Smart City Projects</header>
+  <div class="container">
+    <h2>Ongoing Smart City Initiatives</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Smart Traffic Management</h3>
+        <p>Using IoT-enabled signals and sensors to reduce congestion.</p>
+        <span class="status ongoing">Ongoing</span>
+      </div>
+      <div class="card">
+        <h3>Solar Energy Park</h3>
+        <p>Developing renewable energy resources for sustainable growth.</p>
+        <span class="status future">Future</span>
+      </div>
+      <div class="card">
+        <h3>Waste Management System</h3>
+        <p>Smart bins and tracking system for efficient waste collection.</p>
+        <span class="status completed">Completed</span>
+      </div>
+    </div>
+
+    <!-- Flowchart -->
+    <div class="flowchart">
+      <h2>Smart City Project Flow</h2>
+      <div class="flow">
+        <div class="node">Government Planning</div>
+        <div class="arrow"></div>
+        <div class="node">NGO & Institutions</div>
+        <div class="arrow"></div>
+        <div class="node">Research Labs (DSU, Solar Park)</div>
+        <div class="arrow"></div>
+        <div class="node">Implementation & Monitoring</div>
+        <div class="arrow"></div>
+        <div class="node">Citizens</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

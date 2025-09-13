@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Bit & Build</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+      <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">💰 Transparent Funds</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+  
+      <li><a href="fundsflow.html">Funds Flow</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>Dashboard</h1>
+  </header>
+
+  <main>
+    <!-- Login Details -->
+    <section class="card">
+      <h2>Login Details</h2>
+      <div id="details"></div>
+    </section>
+
+    <!-- Institution Projects -->
+    <section class="card" id="institution-projects" style="display: none;">
+      <h2>Institution Projects</h2>
+      <div id="projects-list">
+        <!-- Filled dynamically -->
+      </div>
+    </section>
+
+    <!-- Fund Flow Pie Chart -->
+    <section class="card" id="funds-section" style="display: none;">
+      <h2>Fund Utilization</h2>
+      <canvas id="fundChart" width="400" height="200"></canvas>
+    </section>
+  </main>
+
+  <script src="bnb.js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Health Drive Dashboard with Status Flow</title>
+<body>
+     <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo">💰 Transparent Funds</div>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="login.html">Login</a></li>
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="fundsflow.html">Funds Flow</a></li>
+    </ul>
+  </nav>
+</body>
+<style>
+  body
+    
+  {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  /* Sidebar */
+    .sidebar {
+      background-color: #14213d;
+      width: 250px;
+      padding: 20px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+    }
+    .logo {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span {
+      font-size: 24px;
+    }
+    .nav-links {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav-links li {
+      margin: 15px 0;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: white;
+      font-size: 16px;
+      display: block;
+      padding: 10px;
+      border-radius: 6px;
+      transition: background 0.3s;
+    }
+    .nav-links a:hover {
+      background-color: #1f2d50;
+    }
+    .nav-links a.active {
+      background-color: #007bff;
+      font-weight: bold;
+    }
+
+    /* Main Content */
+    .main-content {
+      flex-grow: 1;
+      padding: 20px;
+      overflow-y: auto;
+    }
+
+    .card {
+      background-color: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 600px;
+      margin: auto;
+      text-align: center;
+    }
+    .title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #2c3e50;
+    }
+  .card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    padding: 20px;
+    width: 480px;
+    text-align: center;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #2c3e50;
+  }
+  .status {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #27ae60;
+  }
+  .sub-attributes {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    text-align: left;
+  }
+  .sub-attributes button {
+    padding: 8px 12px;
+    margin: 5px 0;
+    border: none;
+    border-radius: 8px;
+    background-color: #16a085;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  .sub-attributes button:hover {
+    background-color: #1abc9c;
+  }
+  .details {
+    margin-top: 15px;
+    text-align: left;
+  }
+  .details h4 {
+    margin-bottom: 5px;
+    color: #34495e;
+  }
+  .progress-container {
+    background-color: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+  }
+  .progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #2980b9;
+    transition: width 0.5s;
+  }
+  .funds, .description, .fund-level {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #2c3e50;
+  }
+  .funds span, .fund-level span {
+    font-weight: bold;
+  }
+
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+  }
+  .flow-step {
+    padding: 10px 12px;
+    border-radius: 8px;
+    width: 80%;
+    text-align: center;
+    margin: 5px 0;
+    position: relative;
+    color: #fff;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flow-step::after {
+    content: "↓";
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 18px;
+    color: #7f8c8d;
+  }
+  .flow-step:last-child::after {
+    content: "";
+  }
+  .status-completed { background-color: #27ae60; }   /* Green */
+  .status-inprogress { background-color: #f39c12; }  /* Orange */
+  .status-pending { background-color: #c0392b; }     /* Red */
+  .step-time {
+    font-size: 12px;
+    opacity: 0.8;
+    margin-left: 10px;
+  }
+</style>
+</head>
+<body>
+   
+
+<div class="card" id="healthCard">
+  <div class="title">Community Health Drive</div>
+  <div class="status" id="statusText">Select a sub-project to see details.</div>
+
+  <div class="sub-attributes">
+    <button class="btn" data-attr="Health Camps">Health Camps</button>
+    <button class="btn" data-attr="Awareness Programs">Awareness Programs</button>
+    <button class="btn" data-attr="Vaccination Drives">Vaccination Drives</button>
+    <button class="btn" data-attr="Medical Supplies Distribution">Medical Supplies Distribution</button>
+  </div>
+
+  <div class="details" id="detailsSection">
+    <h4 id="subTitle">Sub-project:</h4>
+    <p class="description" id="subInfo">Details about the sub-project will appear here.</p>
+
+    <div class="progress-container">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="funds" id="fundsInfo">
+      <p>Allocated: <span id="fundAllocated">$0</span></p>
+      <p>Spent: <span id="fundSpent">$0</span></p>
+      <p>Remaining: <span id="fundRemaining">$0</span></p>
+    </div>
+
+    <div class="fund-level" id="fundLevel">
+      Fund sanctioned at: <span id="fundLevelText">-</span>
+    </div>
+
+    <div class="flowchart" id="flowchart">
+      <!-- Flowchart steps inserted dynamically -->
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const statusText = document.getElementById('statusText');
+  const subButtons = document.querySelectorAll('.sub-attributes .btn');
+  const subTitle = document.getElementById('subTitle');
+  const subInfo = document.getElementById('subInfo');
+  const progressBar = document.getElementById('progressBar');
+  const fundAllocated = document.getElementById('fundAllocated');
+  const fundSpent = document.getElementById('fundSpent');
+  const fundRemaining = document.getElementById('fundRemaining');
+  const fundLevelText = document.getElementById('fundLevelText');
+  const flowchartDiv = document.getElementById('flowchart');
+
+  const projectData = {
+    "Health Camps": {
+      info: "Organizing health camps in local communities for free checkups.",
+      progress: 60,
+      funds: { allocated: 5000, spent: 3000 },
+      fundLevel: "NGO Level",
+      flow: [
+        { step: "NGO Funding", status: "completed", time: "01 Sep" },
+        { step: "Local Coordinator", status: "inprogress", time: "03 Sep" },
+        { step: "Volunteers", status: "pending", time: "05 Sep" },
+        { step: "Health Camp Execution", status: "pending", time: "10 Sep" },
+        { step: "Beneficiaries", status: "pending", time: "10 Sep" }
+      ]
+    },
+    "Awareness Programs": {
+      info: "Hygiene and nutrition awareness programs.",
+      progress: 40,
+      funds: { allocated: 3000, spent: 1200 },
+      fundLevel: "Government Level",
+      flow: [
+        { step: "Government Grants", status: "completed", time: "01 Sep" },
+        { step: "Program Manager", status: "inprogress", time: "03 Sep" },
+        { step: "Event Coordinators", status: "pending", time: "06 Sep" },
+        { step: "Workshops", status: "pending", time: "10 Sep" },
+        { step: "Community", status: "pending", time: "10 Sep" }
+      ]
+    },
+    "Vaccination Drives": {
+      info: "Coordinating vaccination coverage.",
+      progress: 75,
+      funds: { allocated: 8000, spent: 6000 },
+      fundLevel: "Citizen + Government Level",
+      flow: [
+        { step: "Government + Donations", status: "completed", time: "01 Sep" },
+        { step: "Healthcare Team", status: "completed", time: "03 Sep" },
+        { step: "Vaccination Centers", status: "inprogress", time: "05 Sep" },
+        { step: "Community Outreach", status: "pending", time: "08 Sep" },
+        { step: "Beneficiaries", status: "pending", time: "10 Sep" }
+      ]
+    },
+    "Medical Supplies Distribution": {
+      info: "Distributing medicines to underprivileged communities.",
+      progress: 50,
+      funds: { allocated: 4000, spent: 2000 },
+      fundLevel: "NGO + Citizen Level",
+      flow: [
+        { step: "NGO + Donations", status: "completed", time: "01 Sep" },
+        { step: "Logistics Team", status: "inprogress", time: "04 Sep" },
+        { step: "Local Volunteers", status: "pending", time: "06 Sep" },
+        { step: "Distribution Centers", status: "pending", time: "08 Sep" },
+        { step: "Recipients", status: "pending", time: "10 Sep" }
+      ]
+    }
+  };
+
+  subButtons.forEach(btn => {
+    btn.addEventListener('click', function() {
+      const attr = this.getAttribute('data-attr');
+      const data = projectData[attr];
+
+      statusText.textContent = `${attr} selected!`;
+      subTitle.textContent = `Sub-project: ${attr}`;
+      subInfo.textContent = data.info;
+      progressBar.style.width = data.progress + "%";
+
+      fundAllocated.textContent = "$" + data.funds.allocated;
+      fundSpent.textContent = "$" + data.funds.spent;
+      fundRemaining.textContent = "$" + (data.funds.allocated - data.funds.spent);
+      fundLevelText.textContent = data.fundLevel;
+
+      // Render flowchart with status colors and times
+      flowchartDiv.innerHTML = '';
+      data.flow.forEach(stepObj => {
+        const stepDiv = document.createElement('div');
+        stepDiv.className = 'flow-step status-' + stepObj.status;
+        stepDiv.innerHTML = `<span>${stepObj.step}</span><span class="step-time">${stepObj.time}</span>`;
+        flowchartDiv.appendChild(stepDiv);
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>

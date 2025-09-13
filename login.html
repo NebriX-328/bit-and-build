@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Bit & Build</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Enter username" required>
+      <input type="email" id="email" placeholder="Enter email" required>
+      <select id="role" required>
+        <option value="">Select Role</option>
+        <option value="Admin">Admin</option>
+        <option value="Institution">Institution</option>
+        <option value="User">User</option>
+      </select>
+      <button type="submit">Login</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const role = document.getElementById("role").value;
+
+      // Store login details in localStorage
+      localStorage.setItem("loginDetails", JSON.stringify({ username, email, role }));
+
+      // Redirect to dashboard
+      window.location.href = "dashboard.html";
+    });
+  </script>
+</body>
+</html>
