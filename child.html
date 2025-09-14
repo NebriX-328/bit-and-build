@@ -1,256 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Child Education Support Dashboard</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-  .card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 520px;
-    text-align: center;
-  }
-  .title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #2c3e50;
-  }
-  .status {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #27ae60;
-  }
-  .sub-attributes {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    text-align: left;
-  }
-  .sub-attributes button {
-    padding: 8px 12px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 8px;
-    background-color: #16a085;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .sub-attributes button:hover {
-    background-color: #1abc9c;
-  }
-  .details {
-    margin-top: 15px;
-    text-align: left;
-  }
-  .details h4 {
-    margin-bottom: 5px;
-    color: #34495e;
-  }
-  .progress-container {
-    background-color: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 15px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #2980b9;
-    transition: width 0.5s;
-  }
-  .funds, .description, .fund-level {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #2c3e50;
-  }
-  .funds span, .fund-level span {
-    font-weight: bold;
-  }
-  .flowchart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-  }
-  .flow-step {
-    background-color: #ecf0f1;
-    padding: 10px 12px;
-    border-radius: 8px;
-    width: 85%;
-    text-align: center;
-    margin: 5px 0;
-    border: 1px solid #bdc3c7;
-    position: relative;
-    color: #7f8c8d;
-    font-size: 14px;
-  }
-  .flow-step::after {
-    content: "↓";
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: #7f8c8d;
-  }
-  .flow-step:last-child::after {
-    content: "";
-  }
-  /* Status colors for flow steps */
-  .completed {
-    background-color: #27ae60;
-    color: #fff;
-    border-color: #1e8449;
-  }
-  .current {
-    background-color: #f39c12;
-    color: #fff;
-    border-color: #d35400;
-  }
-  .upcoming {
-    background-color: #ecf0f1;
-    color: #7f8c8d;
-    border-color: #bdc3c7;
-  }
-  .timestamp {
-    font-size: 12px;
-    margin-top: 4px;
-    color: #2c3e50;
-  }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Child Education Support - NGO Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #222;
+      padding-top: 20px;
+      color: #fff;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #ccc;
+      text-decoration: none;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background: #3498db;
+      color: #fff;
+    }
+
+    /* Main Content */
+    .content {
+      margin-left: 240px;
+      padding: 30px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    .card h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .btn-group button {
+      background: #1abc9c;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-group button:hover {
+      background: #16a085;
+    }
+
+    /* Details Section */
+    .details {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f0f3f7;
+    }
+
+    /* Flowchart */
+    .flowchart {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    .step {
+      text-align: center;
+      flex: 1;
+    }
+    .circle {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border-radius: 50%;
+      background: #bdc3c7;
+      line-height: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .step.active .circle {
+      background: #16a085;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .timeline p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 15px;
+    }
+    .feedback textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .feedback button {
+      background: #16a085;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .feedback button:hover {
+      background: #138d75;
+    }
+  </style>
 </head>
 <body>
-
-<div class="card" id="eduCard">
-  <div class="title">Child Education Support</div>
-  <div class="status" id="statusText">Select a program to see details.</div>
-
-  <div class="sub-attributes">
-    <button class="btn" data-attr="Study Material">Free Study Material</button>
-    <button class="btn" data-attr="Tutoring">Tutoring Sessions</button>
-    <button class="btn" data-attr="Scholarships">Scholarship Distribution</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Transparent Funds</h2>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="fundsflow.html">Funds Flow</a>
   </div>
 
-  <div class="details" id="detailsSection">
-    <h4 id="subTitle">Sub-project:</h4>
-    <p class="description" id="subInfo">Details about the program will appear here.</p>
+  <!-- Main Content -->
+  <div class="content">
+    <div class="card">
+      <h2>Child Education Support</h2>
+      <p>Select a program to see details.</p>
 
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+      <div class="btn-group">
+        <button onclick="showDetails('Scholarships')">Scholarships</button>
+        <button onclick="showDetails('School Supplies')">School Supplies</button>
+        <button onclick="showDetails('Evening Tuition')">Evening Tuition</button>
+      </div>
 
-    <div class="funds" id="fundsInfo">
-      <p>Allocated: <span id="fundAllocated">$0</span></p>
-      <p>Spent: <span id="fundSpent">$0</span></p>
-      <p>Remaining: <span id="fundRemaining">$0</span></p>
-    </div>
-
-    <div class="fund-level" id="fundLevel">
-      Fund sanctioned at: <span id="fundLevelText">-</span>
-    </div>
-
-    <div class="flowchart" id="flowchart">
-      <!-- Flowchart dynamically inserted -->
+      <div class="details" id="details">
+        <h4>Program:</h4>
+        <p>Details about the selected program will appear here.</p>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const statusText = document.getElementById('statusText');
-  const subButtons = document.querySelectorAll('.sub-attributes .btn');
-  const subTitle = document.getElementById('subTitle');
-  const subInfo = document.getElementById('subInfo');
-  const progressBar = document.getElementById('progressBar');
-  const fundAllocated = document.getElementById('fundAllocated');
-  const fundSpent = document.getElementById('fundSpent');
-  const fundRemaining = document.getElementById('fundRemaining');
-  const fundLevelText = document.getElementById('fundLevelText');
-  const flowchartDiv = document.getElementById('flowchart');
+  <script>
+    function showDetails(program) {
+      const detailsBox = document.getElementById("details");
+      let allocated = 0, spent = 0, date = "-", step = 0, logs = [];
 
-  const projectData = {
-    "Study Material": {
-      info: "Providing free books, stationery, and online resources.",
-      progress: 45,
-      funds: { allocated: 6000, spent: 2700 },
-      fundLevel: "NGO Level",
-      flow: [
-        { step: "NGO Funding", status: "completed", time: "01 Sep 2025, 10:00 AM" },
-        { step: "Procurement Team", status: "completed", time: "03 Sep 2025, 4:00 PM" },
-        { step: "Local Coordinators", status: "current", time: "05 Sep 2025, 11:00 AM" },
-        { step: "Distribution Centers", status: "upcoming", time: "Expected: 10 Sep 2025" },
-        { step: "Students", status: "upcoming", time: "Expected: 12 Sep 2025" }
-      ]
-    },
-    "Tutoring": {
-      info: "Organizing free after-school tutoring sessions.",
-      progress: 65,
-      funds: { allocated: 7000, spent: 4500 },
-      fundLevel: "Institution + NGO Level",
-      flow: [
-        { step: "Institution Grants", status: "completed", time: "02 Sep 2025, 9:00 AM" },
-        { step: "Tutor Recruitment", status: "completed", time: "04 Sep 2025, 5:00 PM" },
-        { step: "Scheduling", status: "current", time: "06 Sep 2025, 2:00 PM" },
-        { step: "Tutoring Sessions", status: "upcoming", time: "Expected: 15 Sep 2025" },
-        { step: "Students", status: "upcoming", time: "Expected: 20 Sep 2025" }
-      ]
-    },
-    "Scholarships": {
-      info: "Providing scholarships to underprivileged children.",
-      progress: 30,
-      funds: { allocated: 10000, spent: 2000 },
-      fundLevel: "Government + NGO Level",
-      flow: [
-        { step: "Government Grants", status: "completed", time: "01 Sep 2025, 8:30 AM" },
-        { step: "Application Collection", status: "current", time: "07 Sep 2025, 3:00 PM" },
-        { step: "Verification Team", status: "upcoming", time: "Expected: 14 Sep 2025" },
-        { step: "Funds Disbursement", status: "upcoming", time: "Expected: 18 Sep 2025" },
-        { step: "Students", status: "upcoming", time: "Expected: 20 Sep 2025" }
-      ]
-    }
-  };
+      if (program === "Scholarships") {
+        allocated = 100000; spent = 70000; date = "2025-09-01"; step = 5;
+        logs = [
+          "2025-08-20 → Proposal approved by NGO Board.",
+          "2025-08-22 → Verified by Education Department.",
+          "2025-08-25 → ₹1,00,000 sanctioned for Scholarships.",
+          "2025-09-01 → ₹70,000 distributed to students.",
+          "2025-09-05 → Proof of disbursement uploaded."
+        ];
+      } else if (program === "School Supplies") {
+        allocated = 60000; spent = 25000; date = "2025-09-03"; step = 4;
+        logs = [
+          "2025-08-28 → Project proposal submitted.",
+          "2025-08-30 → Verified by Education Department.",
+          "2025-09-02 → ₹60,000 sanctioned for supplies.",
+          "2025-09-03 → ₹25,000 spent on books & uniforms."
+        ];
+      } else if (program === "Evening Tuition") {
+        allocated = 50000; spent = 15000; date = "2025-09-08"; step = 3;
+        logs = [
+          "2025-09-01 → Proposal accepted by NGO Board.",
+          "2025-09-05 → ₹50,000 sanctioned for Evening Tuition.",
+          "2025-09-08 → ₹15,000 spent on hiring tutors."
+        ];
+      }
 
-  subButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const attr = this.getAttribute('data-attr');
-      const data = projectData[attr];
-
-      statusText.textContent = `${attr} selected!`;
-      subTitle.textContent = `Sub-project: ${attr}`;
-      subInfo.textContent = data.info;
-      progressBar.style.width = data.progress + "%";
-
-      fundAllocated.textContent = "$" + data.funds.allocated;
-      fundSpent.textContent = "$" + data.funds.spent;
-      fundRemaining.textContent = "$" + (data.funds.allocated - data.funds.spent);
-      fundLevelText.textContent = data.fundLevel;
-
-      // render flowchart
-      flowchartDiv.innerHTML = '';
-      data.flow.forEach(item => {
-        const stepDiv = document.createElement('div');
-        stepDiv.className = `flow-step ${item.status}`;
-        stepDiv.innerHTML = `${item.step}<div class="timestamp">${item.time}</div>`;
-        flowchartDiv.appendChild(stepDiv);
+      // Flowchart
+      const stages = ["Accepted","Verified","Allocated","Transferred","Utilized","Proof Uploaded","Completed"];
+      let flowHTML = '<div class="flowchart">';
+      stages.forEach((stage, i) => {
+        flowHTML += `
+          <div class="step ${i < step ? 'active' : ''}">
+            <div class="circle">${i+1}</div>
+            <p>${stage}</p>
+          </div>
+        `;
       });
-    });
-  });
-});
-</script>
+      flowHTML += '</div>';
 
+      // Timeline
+      let logHTML = '<div class="timeline">';
+      logs.forEach(item => {
+        logHTML += <p>📌 ${item}</p>;
+      });
+      logHTML += '</div>';
+
+      // Render
+      detailsBox.innerHTML = `
+        <h4>Program: ${program}</h4>
+        <p><strong>Allocated:</strong> ₹${allocated}</p>
+        <p><strong>Spent:</strong> ₹${spent}</p>
+        <p><strong>Remaining:</strong> ₹${allocated - spent}</p>
+        <p><strong>Fund sanctioned at:</strong> ${date}</p>
+        ${flowHTML}
+        ${logHTML}
+        <div class="feedback">
+          <h4>Feedback</h4>
+          <textarea id="feedbackText" placeholder="Enter your feedback..."></textarea>
+          <button onclick="submitFeedback('${program}')">Submit Feedback</button>
+        </div>
+      `;
+    }
+
+    function submitFeedback(program) {
+      const textarea = document.getElementById("feedbackText");
+      if (textarea.value.trim()) {
+        alert("✅ Feedback for " + program + " submitted:\n" + textarea.value);
+        textarea.value = "";
+      } else {
+        alert("⚠ Please enter feedback before submitting.");
+      }
+    }
+  </script>
 </body>
 </html>
