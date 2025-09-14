@@ -3,143 +3,259 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Smart City Projects</title>
+  <title>Smart City Mission - Government Project</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f5f6fa;
       margin: 0;
       padding: 0;
-      background: #f5f7fa;
-      color: #333;
     }
 
-    header {
-      background: #0077b6;
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 24px;
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #222;
+      padding-top: 20px;
+      color: #fff;
     }
-
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 20px auto;
-    }
-
-    h2 {
+    .sidebar h2 {
       text-align: center;
       margin-bottom: 20px;
-      color: #0077b6;
+      font-size: 22px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #ccc;
+      text-decoration: none;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background: #3498db;
+      color: #fff;
     }
 
-    /* Project cards */
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 20px;
+    /* Main Content */
+    .content {
+      margin-left: 240px;
+      padding: 30px;
     }
-
     .card {
-      background: white;
+      background: #fff;
+      padding: 20px 30px;
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    .card h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
     }
 
-    .card:hover {
-      transform: translateY(-5px);
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
     }
-
-    .card h3 {
-      margin-top: 0;
-      color: #023e8a;
-    }
-
-    .status {
-      font-size: 14px;
-      margin-top: 8px;
-      padding: 6px 10px;
+    .btn-group button {
+      background: #1abc9c;
+      border: none;
+      padding: 12px;
       border-radius: 8px;
-      display: inline-block;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-group button:hover {
+      background: #16a085;
     }
 
-    .completed { background: #d4edda; color: #155724; }
-    .ongoing { background: #fff3cd; color: #856404; }
-    .future { background: #d1ecf1; color: #0c5460; }
+    /* Details Section */
+    .details {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f0f3f7;
+    }
 
     /* Flowchart */
     .flowchart {
-      margin-top: 50px;
-      text-align: center;
-    }
-
-    .flowchart h2 {
-      margin-bottom: 30px;
-    }
-
-    .flow {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
+      justify-content: space-between;
+      margin: 20px 0;
     }
-
-    .node {
-      background: #0077b6;
-      color: white;
-      padding: 15px 25px;
-      border-radius: 25px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      font-weight: bold;
-      position: relative;
+    .step {
+      text-align: center;
+      flex: 1;
     }
-
-    .arrow {
-      width: 2px;
+    .circle {
+      width: 40px;
       height: 40px;
-      background: #0077b6;
+      margin: auto;
+      border-radius: 50%;
+      background: #bdc3c7;
+      line-height: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .step.active .circle {
+      background: #16a085;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .timeline p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 15px;
+    }
+    .feedback textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .feedback button {
+      background: #16a085;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .feedback button:hover {
+      background: #138d75;
     }
   </style>
 </head>
 <body>
-  <header>Smart City Projects</header>
-  <div class="container">
-    <h2>Ongoing Smart City Initiatives</h2>
-    <div class="cards">
-      <div class="card">
-        <h3>Smart Traffic Management</h3>
-        <p>Using IoT-enabled signals and sensors to reduce congestion.</p>
-        <span class="status ongoing">Ongoing</span>
-      </div>
-      <div class="card">
-        <h3>Solar Energy Park</h3>
-        <p>Developing renewable energy resources for sustainable growth.</p>
-        <span class="status future">Future</span>
-      </div>
-      <div class="card">
-        <h3>Waste Management System</h3>
-        <p>Smart bins and tracking system for efficient waste collection.</p>
-        <span class="status completed">Completed</span>
-      </div>
-    </div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Transparent Funds</h2>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="fundsflow.html">Funds Flow</a>
+  </div>
 
-    <!-- Flowchart -->
-    <div class="flowchart">
-      <h2>Smart City Project Flow</h2>
-      <div class="flow">
-        <div class="node">Government Planning</div>
-        <div class="arrow"></div>
-        <div class="node">NGO & Institutions</div>
-        <div class="arrow"></div>
-        <div class="node">Research Labs (DSU, Solar Park)</div>
-        <div class="arrow"></div>
-        <div class="node">Implementation & Monitoring</div>
-        <div class="arrow"></div>
-        <div class="node">Citizens</div>
+  <!-- Main Content -->
+  <div class="content">
+    <div class="card">
+      <h2>Smart City Mission</h2>
+      <p>Select a project to see details.</p>
+
+      <div class="btn-group">
+        <button onclick="showDetails('Smart Roads')">Smart Roads</button>
+        <button onclick="showDetails('Waste Management System')">Waste Management System</button>
+        <button onclick="showDetails('Digital Governance')">Digital Governance</button>
+      </div>
+
+      <div class="details" id="details">
+        <h4>Project:</h4>
+        <p>Details about the selected project will appear here.</p>
       </div>
     </div>
   </div>
+
+  <script>
+    function showDetails(project) {
+      const detailsBox = document.getElementById("details");
+      let allocated = 0, spent = 0, date = "-", step = 0, logs = [];
+
+      if (project === "Smart Roads") {
+        allocated = 500000; spent = 300000; date = "2025-08-20"; step = 5;
+        logs = [
+          "2025-07-30 → Proposal approved by State Urban Development Dept.",
+          "2025-08-05 → Verified by Ministry of Urban Affairs.",
+          "2025-08-10 → ₹5,00,000 sanctioned for Smart Roads.",
+          "2025-08-15 → ₹3,00,000 spent on sensor-enabled streetlights.",
+          "2025-08-20 → Proof of implementation uploaded."
+        ];
+      } else if (project === "Waste Management System") {
+        allocated = 400000; spent = 150000; date = "2025-09-01"; step = 4;
+        logs = [
+          "2025-08-10 → Proposal approved by City Council.",
+          "2025-08-15 → Verified by State Environmental Dept.",
+          "2025-08-25 → ₹4,00,000 sanctioned for Waste Management.",
+          "2025-09-01 → ₹1,50,000 spent on smart bins & collection vehicles."
+        ];
+      } else if (project === "Digital Governance") {
+        allocated = 350000; spent = 100000; date = "2025-09-05"; step = 3;
+        logs = [
+          "2025-08-18 → Proposal submitted to Govt. of India.",
+          "2025-08-25 → ₹3,50,000 sanctioned for Digital Governance platform.",
+          "2025-09-05 → ₹1,00,000 spent on citizen portal development."
+        ];
+      }
+
+      // Flowchart
+      const stages = ["Accepted","Verified","Allocated","Transferred","Utilized","Proof Uploaded","Completed"];
+      let flowHTML = '<div class="flowchart">';
+      stages.forEach((stage, i) => {
+        flowHTML += `
+          <div class="step ${i < step ? 'active' : ''}">
+            <div class="circle">${i+1}</div>
+            <p>${stage}</p>
+          </div>
+        `;
+      });
+      flowHTML += '</div>';
+
+      // Timeline
+      let logHTML = '<div class="timeline">';
+      logs.forEach(item => {
+        logHTML += <p>📌 ${item}</p>;
+      });
+      logHTML += '</div>';
+
+      // Render
+      detailsBox.innerHTML = `
+        <h4>Project: ${project}</h4>
+        <p><strong>Allocated:</strong> ₹${allocated}</p>
+        <p><strong>Spent:</strong> ₹${spent}</p>
+        <p><strong>Remaining:</strong> ₹${allocated - spent}</p>
+        <p><strong>Fund sanctioned at:</strong> ${date}</p>
+        ${flowHTML}
+        ${logHTML}
+        <div class="feedback">
+          <h4>Feedback</h4>
+          <textarea id="feedbackText" placeholder="Enter your feedback..."></textarea>
+          <button onclick="submitFeedback('${project}')">Submit Feedback</button>
+        </div>
+      `;
+    }
+
+    function submitFeedback(project) {
+      const textarea = document.getElementById("feedbackText");
+      if (textarea.value.trim()) {
+        alert("✅ Feedback for " + project + " submitted:\n" + textarea.value);
+        textarea.value = "";
+      } else {
+        alert("⚠ Please enter feedback before submitting.");
+      }
+    }
+  </script>
 </body>
 </html>
