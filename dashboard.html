@@ -8,16 +8,16 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-      <!-- Navbar -->
+  <!-- Navbar -->
   <nav class="navbar">
     <div class="logo">💰 Transparent Funds</div>
     <ul class="nav-links">
       <li><a href="index.html" class="active">Home</a></li>
       <li><a href="login.html">Login</a></li>
-  
       <li><a href="fundsflow.html">Funds Flow</a></li>
     </ul>
   </nav>
+
   <header>
     <h1>Dashboard</h1>
   </header>
@@ -32,15 +32,37 @@
     <!-- Institution Projects -->
     <section class="card" id="institution-projects" style="display: none;">
       <h2>Institution Projects</h2>
-      <div id="projects-list">
-        <!-- Filled dynamically -->
-      </div>
+      <div id="institution-list"></div>
     </section>
 
-    <!-- Fund Flow Pie Chart -->
-    <section class="card" id="funds-section" style="display: none;">
-      <h2>Fund Utilization</h2>
-      <canvas id="fundChart" width="400" height="200"></canvas>
+    <!-- Institution Fund Flow -->
+    <section class="card" id="institution-funds" style="display: none;">
+      <h2>Institution Fund Utilization</h2>
+      <canvas id="institutionChart" width="400" height="200"></canvas>
+    </section>
+
+    <!-- User Projects -->
+    <section class="card" id="user-projects" style="display: none;">
+      <h2>User Projects</h2>
+      <div id="user-list"></div>
+    </section>
+
+    <!-- User Fund Flow -->
+    <section class="card" id="user-funds" style="display: none;">
+      <h2>User Fund Utilization</h2>
+      <canvas id="userChart" width="400" height="200"></canvas>
+    </section>
+
+    <!-- Admin Projects -->
+    <section class="card" id="admin-projects" style="display: none;">
+      <h2>Admin Projects</h2>
+      <div id="admin-list"></div>
+    </section>
+
+    <!-- Admin Fund Flow -->
+    <section class="card" id="admin-funds" style="display: none;">
+      <h2>Admin Fund Utilization</h2>
+      <canvas id="adminChart" width="400" height="200"></canvas>
     </section>
   </main>
 
