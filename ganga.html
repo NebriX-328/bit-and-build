@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clean Ganga Mission - Government Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #222;
+      padding-top: 20px;
+      color: #fff;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #ccc;
+      text-decoration: none;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background: #3498db;
+      color: #fff;
+    }
+
+    /* Main Content */
+    .content {
+      margin-left: 240px;
+      padding: 30px;
+    }
+    .card {
+      background: #fff;
+      padding: 20px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    .card h2 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 10px;
+    }
+
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .btn-group button {
+      background: #1abc9c;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-group button:hover {
+      background: #16a085;
+    }
+
+    /* Details Section */
+    .details {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f0f3f7;
+    }
+
+    /* Flowchart */
+    .flowchart {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    .step {
+      text-align: center;
+      flex: 1;
+    }
+    .circle {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border-radius: 50%;
+      background: #bdc3c7;
+      line-height: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .step.active .circle {
+      background: #16a085;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .timeline p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 15px;
+    }
+    .feedback textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .feedback button {
+      background: #16a085;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .feedback button:hover {
+      background: #138d75;
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Transparent Funds</h2>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="fundsflow.html">Funds Flow</a>
+  </div>
+
+  <!-- Main Content -->
+  <div class="content">
+    <div class="card">
+      <h2>Clean Ganga Mission</h2>
+      <p>Select a project to see details.</p>
+
+      <div class="btn-group">
+        <button onclick="showDetails('Sewage Treatment Plants')">Sewage Treatment Plants</button>
+        <button onclick="showDetails('River Surface Cleaning')">River Surface Cleaning</button>
+        <button onclick="showDetails('Public Awareness Campaigns')">Public Awareness Campaigns</button>
+      </div>
+
+      <div class="details" id="details">
+        <h4>Project:</h4>
+        <p>Details about the selected project will appear here.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showDetails(project) {
+      const detailsBox = document.getElementById("details");
+      let allocated = 0, spent = 0, date = "-", step = 0, logs = [];
+
+      if (project === "Sewage Treatment Plants") {
+        allocated = 800000; spent = 450000; date = "2025-07-20"; step = 5;
+        logs = [
+          "2025-07-01 → Proposal approved by National Ganga Council.",
+          "2025-07-05 → Verified by Ministry of Jal Shakti.",
+          "2025-07-10 → ₹8,00,000 sanctioned for STP construction.",
+          "2025-07-15 → ₹4,50,000 spent on construction and machinery.",
+          "2025-07-20 → NGO partner uploaded proof of installation."
+        ];
+      } else if (project === "River Surface Cleaning") {
+        allocated = 300000; spent = 120000; date = "2025-08-01"; step = 4;
+        logs = [
+          "2025-07-20 → Proposal approved by State River Authority.",
+          "2025-07-25 → Verified by Pollution Control Board.",
+          "2025-07-30 → ₹3,00,000 sanctioned for river cleaning boats.",
+          "2025-08-01 → ₹1,20,000 spent on equipment and manpower."
+        ];
+      } else if (project === "Public Awareness Campaigns") {
+        allocated = 150000; spent = 50000; date = "2025-08-10"; step = 3;
+        logs = [
+          "2025-07-28 → Proposal submitted to National Mission for Clean Ganga.",
+          "2025-08-05 → ₹1,50,000 sanctioned for awareness drives.",
+          "2025-08-10 → ₹50,000 spent on workshops and school campaigns."
+        ];
+      }
+
+      // Flowchart
+      const stages = ["Accepted","Verified","Allocated","Transferred","Utilized","Proof Uploaded","Completed"];
+      let flowHTML = '<div class="flowchart">';
+      stages.forEach((stage, i) => {
+        flowHTML += `
+          <div class="step ${i < step ? 'active' : ''}">
+            <div class="circle">${i+1}</div>
+            <p>${stage}</p>
+          </div>
+        `;
+      });
+      flowHTML += '</div>';
+
+      // Timeline
+      let logHTML = '<div class="timeline">';
+      logs.forEach(item => {
+        logHTML += <p>📌 ${item}</p>;
+      });
+      logHTML += '</div>';
+
+      // Render
+      detailsBox.innerHTML = `
+        <h4>Project: ${project}</h4>
+        <p><strong>Allocated:</strong> ₹${allocated}</p>
+        <p><strong>Spent:</strong> ₹${spent}</p>
+        <p><strong>Remaining:</strong> ₹${allocated - spent}</p>
+        <p><strong>Fund sanctioned at:</strong> ${date}</p>
+        ${flowHTML}
+        ${logHTML}
+        <div class="feedback">
+          <h4>Feedback</h4>
+          <textarea id="feedbackText" placeholder="Enter your feedback..."></textarea>
+          <button onclick="submitFeedback('${project}')">Submit Feedback</button>
+        </div>
+      `;
+    }
+
+    function submitFeedback(project) {
+      const textarea = document.getElementById("feedbackText");
+      if (textarea.value.trim()) {
+        alert("✅ Feedback for " + project + " submitted:\n" + textarea.value);
+        textarea.value = "";
+      } else {
+        alert("⚠ Please enter feedback before submitting.");
+      }
+    }
+  </script>
+</body>
+</html>
