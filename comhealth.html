@@ -1,343 +1,261 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Community Health Drive Dashboard with Status Flow</title>
-<body>
-     <!-- Navbar -->
-  <nav class="navbar">
-    <div class="logo">💰 Transparent Funds</div>
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">Home</a></li>
-      <li><a href="login.html">Login</a></li>
-      <li><a href="dashboard.html">Dashboard</a></li>
-      <li><a href="fundsflow.html">Funds Flow</a></li>
-    </ul>
-  </nav>
-</body>
-<style>
-  body
-    
-  {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-  }
-
-  /* Sidebar */
-    .sidebar {
-      background-color: #14213d;
-      width: 250px;
-      padding: 20px;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .logo {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .logo span {
-      font-size: 24px;
-    }
-    .nav-links {
-      list-style: none;
-      padding: 0;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Community Health Drive - NGO Project</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
       margin: 0;
+      padding: 0;
     }
-    .nav-links li {
-      margin: 15px 0;
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #222;
+      padding-top: 20px;
+      color: #fff;
     }
-    .nav-links a {
-      text-decoration: none;
-      color: white;
-      font-size: 16px;
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .sidebar a {
       display: block;
-      padding: 10px;
-      border-radius: 6px;
-      transition: background 0.3s;
+      padding: 12px 20px;
+      color: #ccc;
+      text-decoration: none;
+      margin: 4px 0;
+      border-radius: 5px;
     }
-    .nav-links a:hover {
-      background-color: #1f2d50;
-    }
-    .nav-links a.active {
-      background-color: #007bff;
-      font-weight: bold;
+    .sidebar a.active, .sidebar a:hover {
+      background: #3498db;
+      color: #fff;
     }
 
     /* Main Content */
-    .main-content {
-      flex-grow: 1;
-      padding: 20px;
-      overflow-y: auto;
+    .content {
+      margin-left: 240px;
+      padding: 30px;
     }
-
     .card {
-      background-color: #ffffff;
+      background: #fff;
+      padding: 20px 30px;
       border-radius: 12px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      padding: 20px;
-      width: 600px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      max-width: 900px;
       margin: auto;
+    }
+    .card h2 {
       text-align: center;
-    }
-    .title {
-      font-size: 22px;
-      font-weight: bold;
-      margin-bottom: 15px;
       color: #2c3e50;
+      margin-bottom: 10px;
     }
-  .card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    padding: 20px;
-    width: 480px;
-    text-align: center;
-  }
-  .title {
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 15px;
-    color: #2c3e50;
-  }
-  .status {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #27ae60;
-  }
-  .sub-attributes {
-    display: flex;
-    flex-direction: column;
-    margin-top: 10px;
-    text-align: left;
-  }
-  .sub-attributes button {
-    padding: 8px 12px;
-    margin: 5px 0;
-    border: none;
-    border-radius: 8px;
-    background-color: #16a085;
-    color: white;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  .sub-attributes button:hover {
-    background-color: #1abc9c;
-  }
-  .details {
-    margin-top: 15px;
-    text-align: left;
-  }
-  .details h4 {
-    margin-bottom: 5px;
-    color: #34495e;
-  }
-  .progress-container {
-    background-color: #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    height: 15px;
-    margin-top: 5px;
-    margin-bottom: 10px;
-  }
-  .progress-bar {
-    height: 100%;
-    width: 0%;
-    background-color: #2980b9;
-    transition: width 0.5s;
-  }
-  .funds, .description, .fund-level {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #2c3e50;
-  }
-  .funds span, .fund-level span {
-    font-weight: bold;
-  }
 
-  .flowchart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 15px;
-  }
-  .flow-step {
-    padding: 10px 12px;
-    border-radius: 8px;
-    width: 80%;
-    text-align: center;
-    margin: 5px 0;
-    position: relative;
-    color: #fff;
-    font-weight: bold;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  .flow-step::after {
-    content: "↓";
-    position: absolute;
-    bottom: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 18px;
-    color: #7f8c8d;
-  }
-  .flow-step:last-child::after {
-    content: "";
-  }
-  .status-completed { background-color: #27ae60; }   /* Green */
-  .status-inprogress { background-color: #f39c12; }  /* Orange */
-  .status-pending { background-color: #c0392b; }     /* Red */
-  .step-time {
-    font-size: 12px;
-    opacity: 0.8;
-    margin-left: 10px;
-  }
-</style>
+    /* Button Group */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+    .btn-group button {
+      background: #1abc9c;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn-group button:hover {
+      background: #16a085;
+    }
+
+    /* Details Section */
+    .details {
+      margin-top: 20px;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f0f3f7;
+    }
+
+    /* Flowchart */
+    .flowchart {
+      display: flex;
+      justify-content: space-between;
+      margin: 20px 0;
+    }
+    .step {
+      text-align: center;
+      flex: 1;
+    }
+    .circle {
+      width: 40px;
+      height: 40px;
+      margin: auto;
+      border-radius: 50%;
+      background: #bdc3c7;
+      line-height: 40px;
+      color: #fff;
+      font-weight: bold;
+    }
+    .step.active .circle {
+      background: #16a085;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin: 20px 0;
+      padding: 15px;
+      background: #fff;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+    }
+    .timeline p {
+      margin: 8px 0;
+      font-size: 14px;
+    }
+
+    /* Feedback */
+    .feedback {
+      margin-top: 15px;
+    }
+    .feedback textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+    .feedback button {
+      background: #16a085;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .feedback button:hover {
+      background: #138d75;
+    }
+  </style>
 </head>
 <body>
-   
-
-<div class="card" id="healthCard">
-  <div class="title">Community Health Drive</div>
-  <div class="status" id="statusText">Select a sub-project to see details.</div>
-
-  <div class="sub-attributes">
-    <button class="btn" data-attr="Health Camps">Health Camps</button>
-    <button class="btn" data-attr="Awareness Programs">Awareness Programs</button>
-    <button class="btn" data-attr="Vaccination Drives">Vaccination Drives</button>
-    <button class="btn" data-attr="Medical Supplies Distribution">Medical Supplies Distribution</button>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Transparent Funds</h2>
+    <a href="index.html">Home</a>
+    <a href="dashboard.html">Dashboard</a>
+    <a href="fundsflow.html">Funds Flow</a>
   </div>
 
-  <div class="details" id="detailsSection">
-    <h4 id="subTitle">Sub-project:</h4>
-    <p class="description" id="subInfo">Details about the sub-project will appear here.</p>
+  <!-- Main Content -->
+  <div class="content">
+    <div class="card">
+      <h2>Community Health Drive</h2>
+      <p>Select a program to see details.</p>
 
-    <div class="progress-container">
-      <div class="progress-bar" id="progressBar"></div>
-    </div>
+      <div class="btn-group">
+        <button onclick="showDetails('Vaccination Camp')">Vaccination Camp</button>
+        <button onclick="showDetails('Nutrition Awareness')">Nutrition Awareness</button>
+        <button onclick="showDetails('Medical Checkups')">Medical Checkups</button>
+      </div>
 
-    <div class="funds" id="fundsInfo">
-      <p>Allocated: <span id="fundAllocated">$0</span></p>
-      <p>Spent: <span id="fundSpent">$0</span></p>
-      <p>Remaining: <span id="fundRemaining">$0</span></p>
-    </div>
-
-    <div class="fund-level" id="fundLevel">
-      Fund sanctioned at: <span id="fundLevelText">-</span>
-    </div>
-
-    <div class="flowchart" id="flowchart">
-      <!-- Flowchart steps inserted dynamically -->
+      <div class="details" id="details">
+        <h4>Program:</h4>
+        <p>Details about the selected program will appear here.</p>
+      </div>
     </div>
   </div>
-</div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const statusText = document.getElementById('statusText');
-  const subButtons = document.querySelectorAll('.sub-attributes .btn');
-  const subTitle = document.getElementById('subTitle');
-  const subInfo = document.getElementById('subInfo');
-  const progressBar = document.getElementById('progressBar');
-  const fundAllocated = document.getElementById('fundAllocated');
-  const fundSpent = document.getElementById('fundSpent');
-  const fundRemaining = document.getElementById('fundRemaining');
-  const fundLevelText = document.getElementById('fundLevelText');
-  const flowchartDiv = document.getElementById('flowchart');
+  <script>
+    function showDetails(program) {
+      const detailsBox = document.getElementById("details");
+      let allocated = 0, spent = 0, date = "-", step = 0, logs = [];
 
-  const projectData = {
-    "Health Camps": {
-      info: "Organizing health camps in local communities for free checkups.",
-      progress: 60,
-      funds: { allocated: 5000, spent: 3000 },
-      fundLevel: "NGO Level",
-      flow: [
-        { step: "NGO Funding", status: "completed", time: "01 Sep" },
-        { step: "Local Coordinator", status: "inprogress", time: "03 Sep" },
-        { step: "Volunteers", status: "pending", time: "05 Sep" },
-        { step: "Health Camp Execution", status: "pending", time: "10 Sep" },
-        { step: "Beneficiaries", status: "pending", time: "10 Sep" }
-      ]
-    },
-    "Awareness Programs": {
-      info: "Hygiene and nutrition awareness programs.",
-      progress: 40,
-      funds: { allocated: 3000, spent: 1200 },
-      fundLevel: "Government Level",
-      flow: [
-        { step: "Government Grants", status: "completed", time: "01 Sep" },
-        { step: "Program Manager", status: "inprogress", time: "03 Sep" },
-        { step: "Event Coordinators", status: "pending", time: "06 Sep" },
-        { step: "Workshops", status: "pending", time: "10 Sep" },
-        { step: "Community", status: "pending", time: "10 Sep" }
-      ]
-    },
-    "Vaccination Drives": {
-      info: "Coordinating vaccination coverage.",
-      progress: 75,
-      funds: { allocated: 8000, spent: 6000 },
-      fundLevel: "Citizen + Government Level",
-      flow: [
-        { step: "Government + Donations", status: "completed", time: "01 Sep" },
-        { step: "Healthcare Team", status: "completed", time: "03 Sep" },
-        { step: "Vaccination Centers", status: "inprogress", time: "05 Sep" },
-        { step: "Community Outreach", status: "pending", time: "08 Sep" },
-        { step: "Beneficiaries", status: "pending", time: "10 Sep" }
-      ]
-    },
-    "Medical Supplies Distribution": {
-      info: "Distributing medicines to underprivileged communities.",
-      progress: 50,
-      funds: { allocated: 4000, spent: 2000 },
-      fundLevel: "NGO + Citizen Level",
-      flow: [
-        { step: "NGO + Donations", status: "completed", time: "01 Sep" },
-        { step: "Logistics Team", status: "inprogress", time: "04 Sep" },
-        { step: "Local Volunteers", status: "pending", time: "06 Sep" },
-        { step: "Distribution Centers", status: "pending", time: "08 Sep" },
-        { step: "Recipients", status: "pending", time: "10 Sep" }
-      ]
-    }
-  };
+      if (program === "Vaccination Camp") {
+        allocated = 80000; spent = 50000; date = "2025-09-01"; step = 5;
+        logs = [
+          "2025-08-20 → Proposal approved by NGO Board.",
+          "2025-08-25 → Verified by Health Department.",
+          "2025-08-28 → ₹80,000 sanctioned to Vaccination Camp.",
+          "2025-09-01 → ₹50,000 spent on vaccines & logistics.",
+          "2025-09-05 → Local citizens participated, health reports uploaded."
+        ];
+      } else if (program === "Nutrition Awareness") {
+        allocated = 40000; spent = 15000; date = "2025-09-05"; step = 3;
+        logs = [
+          "2025-09-01 → Proposal submitted & accepted.",
+          "2025-09-03 → ₹40,000 sanctioned to Nutrition Awareness Program.",
+          "2025-09-05 → ₹15,000 spent on campaign material."
+        ];
+      } else if (program === "Medical Checkups") {
+        allocated = 60000; spent = 20000; date = "2025-09-10"; step = 4;
+        logs = [
+          "2025-09-02 → Proposal accepted.",
+          "2025-09-04 → Verified by Health Department.",
+          "2025-09-07 → ₹60,000 sanctioned.",
+          "2025-09-10 → ₹20,000 spent on free health checkups."
+        ];
+      }
 
-  subButtons.forEach(btn => {
-    btn.addEventListener('click', function() {
-      const attr = this.getAttribute('data-attr');
-      const data = projectData[attr];
-
-      statusText.textContent = `${attr} selected!`;
-      subTitle.textContent = `Sub-project: ${attr}`;
-      subInfo.textContent = data.info;
-      progressBar.style.width = data.progress + "%";
-
-      fundAllocated.textContent = "$" + data.funds.allocated;
-      fundSpent.textContent = "$" + data.funds.spent;
-      fundRemaining.textContent = "$" + (data.funds.allocated - data.funds.spent);
-      fundLevelText.textContent = data.fundLevel;
-
-      // Render flowchart with status colors and times
-      flowchartDiv.innerHTML = '';
-      data.flow.forEach(stepObj => {
-        const stepDiv = document.createElement('div');
-        stepDiv.className = 'flow-step status-' + stepObj.status;
-        stepDiv.innerHTML = `<span>${stepObj.step}</span><span class="step-time">${stepObj.time}</span>`;
-        flowchartDiv.appendChild(stepDiv);
+      // Flowchart
+      const stages = ["Accepted","Verified","Allocated","Transferred","Utilized","Proof Uploaded","Completed"];
+      let flowHTML = '<div class="flowchart">';
+      stages.forEach((stage, i) => {
+        flowHTML += `
+          <div class="step ${i < step ? 'active' : ''}">
+            <div class="circle">${i+1}</div>
+            <p>${stage}</p>
+          </div>
+        `;
       });
-    });
-  });
-});
-</script>
+      flowHTML += '</div>';
 
+      // Timeline
+      let logHTML = '<div class="timeline">';
+      logs.forEach(item => {
+        logHTML += <p>📌 ${item}</p>;
+      });
+      logHTML += '</div>';
+
+      // Render
+      detailsBox.innerHTML = `
+        <h4>Program: ${program}</h4>
+        <p><strong>Allocated:</strong> ₹${allocated}</p>
+        <p><strong>Spent:</strong> ₹${spent}</p>
+        <p><strong>Remaining:</strong> ₹${allocated - spent}</p>
+        <p><strong>Fund sanctioned at:</strong> ${date}</p>
+        ${flowHTML}
+        ${logHTML}
+        <div class="feedback">
+          <h4>Feedback</h4>
+          <textarea id="feedbackText" placeholder="Enter your feedback..."></textarea>
+          <button onclick="submitFeedback('${program}')">Submit Feedback</button>
+        </div>
+      `;
+    }
+
+    function submitFeedback(program) {
+      const textarea = document.getElementById("feedbackText");
+      if (textarea.value.trim()) {
+        alert("✅ Feedback for " + program + " submitted:\n" + textarea.value);
+        textarea.value = "";
+      } else {
+        alert("⚠ Please enter feedback before submitting.");
+      }
+    }
+  </script>
 </body>
 </html>
