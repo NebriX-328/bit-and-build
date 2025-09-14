@@ -1,36 +1,100 @@
 /* Global Reset */
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #fdfdfd;   /* soft white */
-  padding: 15px 40px;
-  border-bottom: 1px solid #e0e0e0;
-}
-.navbar .logo { 
-  color: #2c3e50; 
-  font-size: 20px; 
-  font-weight: bold; 
-}
-.navbar .nav-links { 
-  list-style: none; 
-  display: flex; 
-  gap: 20px; 
-}
-.navbar .nav-links li a {
-  color: #2c3e50; 
-  text-decoration: none; 
-  padding: 8px 12px; 
-  border-radius: 5px;
-  transition: 0.3s;
-}
-.navbar .nav-links li a:hover, .navbar .nav-links li a.active {
-  background: #d1ecf1; /* light pastel blue highlight */
-  color: #007b83;
-}
+body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f6fa;
+      color: #2c3e50;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 220px;
+      height: 100%;
+      background: #222;
+      padding-top: 20px;
+      color: #fff;
+    }
+    .sidebar h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .sidebar a {
+      display: block;
+      padding: 12px 20px;
+      color: #ccc;
+      text-decoration: none;
+      margin: 4px 0;
+      border-radius: 5px;
+    }
+    .sidebar a.active, .sidebar a:hover {
+      background: #16a085;
+      color: #fff;
+    }
+
+    /* Main */
+    .content {
+      margin-left: 240px;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .search-box {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+    .search-box input {
+      width: 300px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 6px 0 0 6px;
+      outline: none;
+    }
+    .search-box button {
+      padding: 10px 15px;
+      border: none;
+      background: #16a085;
+      color: #fff;
+      border-radius: 0 6px 6px 0;
+      cursor: pointer;
+    }
+    .search-box button:hover {
+      background: #138d75;
+    }
+
+    /* Cards */
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      width: 250px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .card h3 {
+      color: #16a085;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
 /* Hero Section */
 .hero {
@@ -477,3 +541,4 @@ section h3 {
   margin: 20px auto;
   max-width: 400px;
 }
+
